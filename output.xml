@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150911 11:07:35.094" generator="Robot 2.9 (Python 2.7.6 on darwin)">
+<suite source="/Users/canwu/Cisco/Iotdm test/build the tree.robot" id="s1" name="Build The Tree">
+<test id="s1-t1" name="Set Suite Variable">
+<kw name="Connect To Iotdm" library="criotdm">
+<doc>According to protocol, connect to iotdm.</doc>
+<arguments>
+<arg>${httphost}</arg>
+<arg>${httpuser}</arg>
+<arg>${httppass}</arg>
+<arg>http</arg>
+</arguments>
+<assign>
+<var>${iserver}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.239" level="INFO">Starting new HTTP connection (1): 127.0.0.1</msg>
+<msg timestamp="20150911 11:07:35.262" level="INFO">{"output":{"onem2m-primitive":[{"value":"Provisioned cseBase: InCSE1 type: IN-CSE","name":"rsc"}]}}</msg>
+<msg timestamp="20150911 11:07:35.262" level="INFO">${iserver} = &lt;ciotdm.connect instance at 0x1068a16c8&gt;</msg>
+<status status="PASS" endtime="20150911 11:07:35.262" starttime="20150911 11:07:35.219"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${iserver}</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.263" level="INFO">${iserver} = &lt;ciotdm.connect instance at 0x1068a16c8&gt;</msg>
+<status status="PASS" endtime="20150911 11:07:35.263" starttime="20150911 11:07:35.262"></status>
+</kw>
+<status status="PASS" endtime="20150911 11:07:35.263" critical="yes" starttime="20150911 11:07:35.219"></status>
+</test>
+<test id="s1-t2" name="Create the tree">
+<kw name="Connect And Create The Tree">
+<doc>Create a tree that contain AE/ container / contentInstance in different layers</doc>
+<kw name="Connect To Iotdm" library="criotdm">
+<doc>According to protocol, connect to iotdm.</doc>
+<arguments>
+<arg>${httphost}</arg>
+<arg>${httpuser}</arg>
+<arg>${httppass}</arg>
+<arg>http</arg>
+</arguments>
+<assign>
+<var>${iserver}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.266" level="INFO">Starting new HTTP connection (1): 127.0.0.1</msg>
+<msg timestamp="20150911 11:07:35.269" level="INFO">{"output":{"onem2m-primitive":[{"value":"5106","name":"rsc"},{"value":"{\"error\":\"CSE name already exists: InCSE1\"}","name":"pc"}]}}</msg>
+<msg timestamp="20150911 11:07:35.269" level="INFO">${iserver} = &lt;ciotdm.connect instance at 0x107b064d0&gt;</msg>
+<status status="PASS" endtime="20150911 11:07:35.269" starttime="20150911 11:07:35.264"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"api":"jb","apn":"jb2","or":"http://hey/you"</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.269" level="INFO">${attr} = "api":"jb","apn":"jb2","or":"http://hey/you"</msg>
+<status status="PASS" endtime="20150911 11:07:35.269" starttime="20150911 11:07:35.269"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1</arg>
+<arg>${rt_ae}</arg>
+<arg>${attr}</arg>
+<arg>AE1</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.271" level="INFO">Starting new HTTP connection (1): 127.0.0.1</msg>
+<msg timestamp="20150911 11:07:35.273" level="INFO">{
+    "api":"jb","apn":"jb2","or":"http://hey/you"
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.273" starttime="20150911 11:07:35.269"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1</arg>
+<arg>${rt_ae}</arg>
+<arg>${attr}</arg>
+<arg>AE2</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.277" level="INFO">{
+    "api":"jb","apn":"jb2","or":"http://hey/you"
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.277" starttime="20150911 11:07:35.273"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1</arg>
+<arg>${rt_ae}</arg>
+<arg>${attr}</arg>
+<arg>AE3</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.279" level="INFO">{
+    "api":"jb","apn":"jb2","or":"http://hey/you"
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.280" starttime="20150911 11:07:35.277"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.280" level="INFO">${attr} = </msg>
+<status status="PASS" endtime="20150911 11:07:35.280" starttime="20150911 11:07:35.280"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/AE1</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container1</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.283" level="INFO">{
+    
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.283" starttime="20150911 11:07:35.280"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/AE1</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container2</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.286" level="INFO">{
+    
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.286" starttime="20150911 11:07:35.283"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSE"]</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.287" level="INFO">${attr} = "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSE"]</msg>
+<status status="PASS" endtime="20150911 11:07:35.287" starttime="20150911 11:07:35.286"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container3</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.290" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSE"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.290" starttime="20150911 11:07:35.287"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container4</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.294" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSE"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.294" starttime="20150911 11:07:35.290"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container5</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.297" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSE"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.297" starttime="20150911 11:07:35.294"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underAEContainer"]</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.298" level="INFO">${attr} = "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underAEContainer"]</msg>
+<status status="PASS" endtime="20150911 11:07:35.298" starttime="20150911 11:07:35.297"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/AE1/Container1</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container6</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.301" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underAEContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.301" starttime="20150911 11:07:35.298"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSEContainer"]</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.302" level="INFO">${attr} = "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSEContainer"]</msg>
+<status status="PASS" endtime="20150911 11:07:35.302" starttime="20150911 11:07:35.301"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container3</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container7</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.304" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSEContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.305" starttime="20150911 11:07:35.302"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container3</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container8</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.307" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSEContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.307" starttime="20150911 11:07:35.305"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container3</arg>
+<arg>${rt_container}</arg>
+<arg>${attr}</arg>
+<arg>Container9</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.312" level="INFO">{
+    "cr":null,"mni":5,"mbs":150,"or":"http://hey/you","lbl":["underCSEContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.312" starttime="20150911 11:07:35.307"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderAEContainer"]</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.313" level="INFO">${attr} = "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderAEContainer"]</msg>
+<status status="PASS" endtime="20150911 11:07:35.313" starttime="20150911 11:07:35.313"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/AE1/Container1</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn1</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.316" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderAEContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.317" starttime="20150911 11:07:35.313"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/AE1/Container1</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn2</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.321" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderAEContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.321" starttime="20150911 11:07:35.317"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainerContainer"]</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.321" level="INFO">${attr} = "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainerContainer"]</msg>
+<status status="PASS" endtime="20150911 11:07:35.321" starttime="20150911 11:07:35.321"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container3</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn3</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.324" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainerContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.324" starttime="20150911 11:07:35.321"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container3</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn4</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.327" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainerContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.327" starttime="20150911 11:07:35.324"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container3</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn5</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.330" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainerContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.330" starttime="20150911 11:07:35.327"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>"cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainer"]</arg>
+</arguments>
+<assign>
+<var>${attr}</var>
+</assign>
+<msg timestamp="20150911 11:07:35.331" level="INFO">${attr} = "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainer"]</msg>
+<status status="PASS" endtime="20150911 11:07:35.331" starttime="20150911 11:07:35.330"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container4</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn6</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.334" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.334" starttime="20150911 11:07:35.331"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container4</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn7</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.337" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.337" starttime="20150911 11:07:35.334"></status>
+</kw>
+<kw name="Create Resource" library="criotdm">
+<doc>Create resource without command.</doc>
+<arguments>
+<arg>${iserver}</arg>
+<arg>InCSE1/Container4</arg>
+<arg>${rt_contentInstance}</arg>
+<arg>${attr}</arg>
+<arg>conIn8</arg>
+</arguments>
+<msg timestamp="20150911 11:07:35.340" level="INFO">{
+    "cnf": "1","or": "http://hey/you","con":"102","lbl":["contentInstanceUnderContainer"]
+}</msg>
+<status status="PASS" endtime="20150911 11:07:35.340" starttime="20150911 11:07:35.337"></status>
+</kw>
+<status status="PASS" endtime="20150911 11:07:35.340" starttime="20150911 11:07:35.263"></status>
+</kw>
+<status status="PASS" endtime="20150911 11:07:35.341" critical="yes" starttime="20150911 11:07:35.263"></status>
+</test>
+<status status="PASS" endtime="20150911 11:07:35.341" starttime="20150911 11:07:35.097"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Build The Tree" pass="2">Build The Tree</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
