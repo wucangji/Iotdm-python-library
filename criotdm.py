@@ -10,7 +10,6 @@ def connect_to_iotdm(host, user, password, prot):
 
 def create_resource(connection, parent, restype, attribute=None, name=None):
     """Create resource without command."""
-    restype = int(restype)
     response = connection.create(parent, restype, attribute, name=name)
     Check_Response(response, "create")
     return response
@@ -19,7 +18,6 @@ def create_resource(connection, parent, restype, attribute=None, name=None):
 def create_resource_with_command(connection, parent, restype,
                                  command, attribute=None, name=None):
     """According to command in the header, create the resource."""
-    restype = int(restype)
     response = connection.createWithCommand(parent, restype,
                                             command, attribute, name=name)
     Check_Response(response, "create")
