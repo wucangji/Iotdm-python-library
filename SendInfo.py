@@ -14,7 +14,7 @@ rt_container       = 3
 rt_contentInstance = 4
 
 def sendCon():
-    threading.Timer(1.0,sendCon).start()
+    threading.Timer(5.0,sendCon).start()
     cpu = psutil.cpu_percent(interval=None)
     attr = conattr + ":" + '\"%s\"' %(cpu)
     print conattr
@@ -22,8 +22,8 @@ def sendCon():
     print conIn_resp.text
 
 connect = criotdm.connect_to_iotdm(httphost, httpuser, httppass, "http")
-attr = '"mni":1'
-#attr=""
+# attr = '"mni":1'
+attr=""
 container_resp = connect.create("InCSE1", rt_container, attr, "TemContainer")
 print(container_resp.text)
 
